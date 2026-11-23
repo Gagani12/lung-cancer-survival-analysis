@@ -109,19 +109,19 @@ The following visualizations are generated during the analysis.
 
 **1. Age Distribution**
 
-![Age Distribution](results/figures/age_distribution.png)
+![Age Distribution](results/figures/"C:\Users\hp\Downloads\11)Age_qqplot.png")
 
-**2. Gender Distribution**
+**2. 	Regression Analysis Plot**
 
-![Gender Distribution](results/figures/gender_distribution.png)
+![Regression Analysis Plot](results/figures/"C:\Users\hp\Downloads\16)regression_residual_plot.png")
 
-**3. Cancer Stage Distribution**
+**3. Correlation Heatmap**
 
-![Cancer Stage Distribution](results/figures/cancer_stage_distribution.png)
+![Correlation Heatmap](results/figures/"C:\Users\hp\Downloads\10)correlation_heatmap.png")
 
-**4. Survival Distribution**
+**4. Confidence Interval**
 
-![Survival Distribution](results/figures/survival_distribution.png)
+![Confidence Interval](results/figures/"C:\Users\hp\Downloads\29)confidence_interval_plot.png")
 
 **5. Correlation Heatmap**
 
