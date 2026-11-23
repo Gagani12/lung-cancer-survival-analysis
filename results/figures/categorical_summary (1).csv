@@ -1,0 +1,34 @@
+,count,unique,top,freq
+Patient_ID,2000,2000,LC-0001,1
+WHO_Region,2000,6,Western Pacific,631
+Country,2000,60,Japan,74
+Gender,2000,2,Male,1248
+Smoking_Status,2000,3,Never Smoked,1311
+Secondhand_Smoke,2000,2,No,1050
+Family_History,2000,2,No,1483
+Occupational_Hazard,2000,2,No,1572
+Air_Pollution_Exposure,2000,3,Moderate,766
+Alcohol_Use,2000,3,Moderate,811
+Exercise_Frequency,2000,3,Low,772
+Chronic_Lung_Disease,2000,2,No,1624
+Asbestos_Exposure,2000,2,No,1886
+Radon_Exposure,2000,2,No,1847
+Previous_Cancer_History,2000,2,No,1881
+Genetic_Mutation,2000,10,No Mutation,729
+Coughing,2000,2,No,1024
+Shortness_of_Breath,2000,2,No,1134
+Chest_Pain,2000,2,No,1292
+Coughing_Blood,2000,2,No,1544
+Fatigue,2000,2,Yes,1323
+Weight_Loss,2000,2,No,1333
+Wheezing,2000,2,No,1448
+Recurrent_Infections,2000,2,No,1403
+Swallowing_Difficulty,2000,2,No,1717
+Finger_Clubbing,2000,2,No,1752
+Cancer_Type,2000,2,NSCLC,1771
+NSCLC_Subtype,2000,4,Adenocarcinoma,1109
+Cancer_Stage,2000,4,Stage I,577
+Metastasis,2000,2,No,1441
+Diagnosis_Method,2000,7,CT Scan,590
+Treatment,2000,8,Surgery,410
+Survived,2000,2,No,1244

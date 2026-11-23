@@ -1,0 +1,5 @@
+Test,Comparison,Statistic,P_Value,Decision_at_0.05
+Welch Independent t-test,Survival Months by Gender,-3.419019358866786,0.0006453957107591284,Reject H0
+One-way ANOVA,Survival Months by Cancer Stage,1793.6038464027029,0.0,Reject H0
+Mann-Whitney U,Survival Months by Gender,429113.0,0.001333200415256065,Reject H0
+Kruskal-Wallis,Survival Months by Cancer Stage,1543.0168460439652,0.0,Reject H0
