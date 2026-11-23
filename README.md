@@ -109,7 +109,7 @@ The following visualizations are generated during the analysis.
 
 **1. Age Distribution**
 
-!["C:\Users\hp\Downloads\11)Age_qqplot.png"](results/figures/"C:\Users\hp\Downloads\11)Age_qqplot.png")
+!["11)Age_qqplot.png"](results/figures/"C:\Users\hp\Downloads\11)Age_qqplot.png")
 
 **2. 	Regression Analysis Plot**
 
