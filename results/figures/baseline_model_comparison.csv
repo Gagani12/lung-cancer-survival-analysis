@@ -1,0 +1,5 @@
+Model,CV_ROC_AUC,Test_Accuracy,Precision,Recall,F1_Score,Test_ROC_AUC
+Gradient Boosting,0.7995,0.7175,0.6188,0.6556,0.6367,0.7774
+Random Forest,0.7989,0.7075,0.5867,0.7616,0.6628,0.7739
+XGBoost,0.7988,0.69,0.5818,0.6358,0.6076,0.7704
+Logistic Regression,0.7831,0.7,0.5749,0.7881,0.6648,0.7546
