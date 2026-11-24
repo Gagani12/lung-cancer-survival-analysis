@@ -409,7 +409,7 @@ python "2) EDA.py"
 
 | 👤 Member | 🆔 Student ID | 🛠️ Contribution |
 |:---:|:---:|:---:|
-| ** Savindi Rathnayaka** | 36373 | Data cleaning, exploratory data analysis, hypothesis testing, assumption testing |
+| Savindi Rathnayaka | 36373 | Data cleaning, exploratory data analysis, hypothesis testing, assumption testing |
 | Gagani Rathnayaka | 36508 | Regression analysis, multivariate analysis, time series/seasonal trend analysis, confidence intervals & model validation |
 | Sanith Nayakasena | 36285 | Machine learning model development, model evaluation, feature importance, business interpretation |
 
