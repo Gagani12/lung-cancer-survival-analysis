@@ -1,5 +1,5 @@
 # NORMALITY TESTING
-rint("\n========== NORMALITY TESTING ==========")
+print("\n========== NORMALITY TESTING ==========")
 
 normality_columns = [
     "Age",
