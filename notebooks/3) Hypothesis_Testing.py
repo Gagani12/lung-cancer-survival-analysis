@@ -198,7 +198,7 @@ if p_value < 0.05:
         "Decision: Reject H0. "
         "There is evidence of a difference among the group distributions."
     )
-lse:
+else:
     print(
         "Decision: Fail to reject H0. "
         "There is insufficient evidence of a difference among the group distributions."
