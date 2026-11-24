@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🫁 Decoding Lung Cancer Survival
+# 🫁 Lung Cancer Survival Prediction
 ### *A full statistical investigation of 2,000 patients, from raw data to forecasts*
 
 <p>
@@ -29,15 +29,15 @@
 
 ## 📑 Table of Contents
 
-- [✨ Highlights at a Glance](#-highlights-at-a-glance)
-- [🎯 Research Questions](#-research-questions)
-- [🗂️ The Dataset](#️-the-dataset)
-- [🔬 Our Analysis Pipeline](#-our-analysis-pipeline)
-- [📊 Key Findings](#-key-findings)
-- [📁 Repository Structure](#-repository-structure)
-- [🚀 Getting Started](#-getting-started)
-- [⚠️ Limitations](#️-limitations)
-- [👥 The Team](#-the-team)
+- [Highlights at a Glance](#-highlights-at-a-glance)
+- [Research Questions](#-research-questions)
+- [The Dataset](#️-the-dataset)
+- [Our Analysis Pipeline](#-our-analysis-pipeline)
+- [Key Findings](#-key-findings)
+- [Repository Structure](#-repository-structure)
+- [Getting Started](#-getting-started)
+- [Limitations](#️-limitations)
+- [The Team](#-the-team)
 
 ---
 
@@ -339,24 +339,24 @@ K = 2 had the best silhouette score (0.190). PC1 and PC2 together explain 32.2% 
  ┣ 📂 data/
  ┃ ┗ 📄 lung_cancer_dataset.csv                     ← raw dataset (2,000 × 41)
  ┣ 📂 notebooks/                                    ← analysis split into 14 ordered scripts
- ┃ ┣ 🐍 1) Data_Cleaning.py                         🧹 duplicates, missing & invalid values
- ┃ ┣ 🐍 2) EDA.py                                   🔍 statistics, histograms, bar charts, heatmap
- ┃ ┣ 🐍 3) Hypothesis_Testing.py                    🧪 Welch t-test, ANOVA, Mann–Whitney, Kruskal–Wallis
- ┃ ┣ 🐍 4) Assumption_Testing.py                    ✅ Shapiro–Wilk, Q-Q plots, Levene's test
- ┃ ┣ 🐍 5) Statistical Results Summary.py           📋 combined table of test results
- ┃ ┣ 🐍 6) Regression_Analysis.py                   📈 multiple linear regression + diagnostics
- ┃ ┣ 🐍 7) PCA_Clustering.py                        🧭 PCA, elbow, silhouette, K-Means
- ┃ ┣ 🐍 8) Time_Series_Analysis.py                  ⏱️ ADF, ACF/PACF, ARIMA vs SARIMA, forecast
- ┃ ┣ 🐍 9) Confidence_Intervals_Model_Validation.py 📏 95% CIs, 5-fold CV, residual analysis
- ┃ ┣ 🐍 10) ML imports.py                           🤖 ML setup & feature engineering
- ┃ ┣ 🐍 11) Classification models.py                🎯 LogReg, RF, GB, XGBoost + ROC curves
- ┃ ┣ 🐍 12) hyperparameter_tuning.py                🔧 RandomizedSearchCV + confusion matrix
- ┃ ┣ 🐍 13) Feature importance.py                   🏅 top 15 predictors of survival
- ┃ ┗ 🐍 14) Predictive_model.py                     🔮 Survival_Months regression model
+ ┃ ┣ 1) Data_Cleaning.py                           duplicates, missing & invalid values
+ ┃ ┣ 2) EDA.py                                     statistics, histograms, bar charts, heatmap
+ ┃ ┣ 3) Hypothesis_Testing.py                      Welch t-test, ANOVA, Mann–Whitney, Kruskal–Wallis
+ ┃ ┣ 4) Assumption_Testing.py                      Shapiro–Wilk, Q-Q plots, Levene's test
+ ┃ ┣ 5) Statistical Results Summary.py             combined table of test results
+ ┃ ┣ 6) Regression_Analysis.py                     multiple linear regression + diagnostics
+ ┃ ┣ 7) PCA_Clustering.py                          PCA, elbow, silhouette, K-Means
+ ┃ ┣ 8) Time_Series_Analysis.py                    ADF, ACF/PACF, ARIMA vs SARIMA, forecast
+ ┃ ┣ 9) Confidence_Intervals_Model_Validation.py   95% CIs, 5-fold CV, residual analysis
+ ┃ ┣ 10) ML imports.py                             ML setup & feature engineering
+ ┃ ┣ 11) Classification models.py                  LogReg, RF, GB, XGBoost + ROC curves
+ ┃ ┣ 12) hyperparameter_tuning.py                  RandomizedSearchCV + confusion matrix
+ ┃ ┣ 13) Feature importance.py                     top 15 predictors of survival
+ ┃ ┗ 14) Predictive_model.py                       Survival_Months regression model
  ┣ 📂 results/
- ┃ ┣ 📂 figures/                                    🖼️ all generated plots (.png)
- ┃ ┗ 📂 tables/                                     🧾 result tables (.csv / .txt)
- ┣ 📄 requirements.txt                              📦 Python dependencies
+ ┃ ┣ 📂 figures/                                    all generated plots (.png)
+ ┃ ┗ 📂 tables/                                     result tables (.csv / .txt)
+ ┣ 📄 requirements.txt                              Python dependencies
  ┗ 📘 README.md
 ```
 
@@ -388,13 +388,7 @@ python "2) EDA.py"
 > The file names contain spaces and brackets, so put them in **quotes** when you run them.
 > Make sure the dataset path in each script points to `../data/lung_cancer_dataset.csv`.
 
-### ☁️ Run in Google Colab
 
-1. Open [Google Colab](https://colab.research.google.com/) and create a new notebook.
-2. Upload `data/lung_cancer_dataset.csv`.
-3. Paste in each script from `notebooks/`, one cell per script, in order, then click **Runtime → Run all**.
-
----
 
 ## ⚠️ Limitations
 
@@ -415,10 +409,10 @@ python "2) EDA.py"
 
 | 👤 Member | 🆔 Student ID | 🛠️ Contribution |
 |:---:|:---:|:---:|
-| **Gagani Rathnayaka** | — | — |
-| — | — | — |
-| — | — | — |
-| — | — | — |
+| ** Savindi Rathnayaka** | 36373 | Data cleaning, exploratory data analysis, hypothesis testing, assumption testing |
+| Gagani Rathnayaka | 36508 | Regression analysis, multivariate analysis, time series/seasonal trend analysis, confidence intervals & model validation |
+| Sanith Nayakasena | 36285 | Machine learning model development, model evaluation, feature importance, business interpretation |
+
 
 </div>
 
@@ -428,8 +422,6 @@ python "2) EDA.py"
 
 ### 💡 *"In lung cancer, when you catch it matters more than anything else we measured."*
 
-Made with 📊, ☕ and a lot of p-values for the **Advanced Statistics** module.
 
-⭐ *If you found this useful, give the repo a star!* ⭐
 
 </div>
