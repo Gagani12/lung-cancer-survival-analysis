@@ -1,0 +1,43 @@
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:        Survival_Months   R-squared:                       0.731
+Model:                            OLS   Adj. R-squared:                  0.728
+Method:                 Least Squares   F-statistic:                     283.2
+Date:                Mon, 23 Nov 2026   Prob (F-statistic):               0.00
+Time:                        17:55:12   Log-Likelihood:                -7866.8
+No. Observations:                2000   AIC:                         1.577e+04
+Df Residuals:                    1980   BIC:                         1.589e+04
+Df Model:                          19                                         
+Covariance Type:            nonrobust                                         
+==========================================================================================================
+                                             coef    std err          t      P>|t|      [0.025      0.975]
+----------------------------------------------------------------------------------------------------------
+Intercept                                 64.2832      3.397     18.922      0.000      57.620      70.946
+C(Gender)[T.Male]                         -0.1324      0.601     -0.220      0.826      -1.312       1.047
+C(Smoking_Status)[T.Former Smoker]         1.5963      1.325      1.205      0.228      -1.002       4.195
+C(Smoking_Status)[T.Never Smoked]         -0.1135      2.118     -0.054      0.957      -4.267       4.040
+C(Cancer_Stage)[T.Stage II]              -24.7596      0.928    -26.689      0.000     -26.579     -22.940
+C(Cancer_Stage)[T.Stage III]             -42.0862      1.286    -32.735      0.000     -44.608     -39.565
+C(Cancer_Stage)[T.Stage IV]              -51.5313      2.074    -24.848      0.000     -55.599     -47.464
+C(Metastasis)[T.Yes]                      -1.4370      1.460     -0.984      0.325      -4.301       1.427
+C(Treatment)[T.Chemotherapy]               0.5713      1.145      0.499      0.618      -1.674       2.817
+C(Treatment)[T.Immunotherapy]             -0.1843      1.202     -0.153      0.878      -2.541       2.172
+C(Treatment)[T.Palliative Care]            1.6867      2.039      0.827      0.408      -2.312       5.685
+C(Treatment)[T.Radiotherapy]               0.1366      1.391      0.098      0.922      -2.592       2.865
+C(Treatment)[T.Surgery]                   -0.1017      1.390     -0.073      0.942      -2.828       2.624
+C(Treatment)[T.Surgery + Chemotherapy]     1.0796      1.336      0.808      0.419      -1.541       3.700
+C(Treatment)[T.Targeted Therapy]           0.3931      1.278      0.308      0.758      -2.114       2.900
+Age                                       -0.0463      0.029     -1.610      0.108      -0.103       0.010
+BMI                                       -0.0744      0.069     -1.080      0.280      -0.210       0.061
+Tumor_Size_cm                              0.1158      0.205      0.565      0.572      -0.287       0.518
+Cigarettes_Per_Day                        -0.0211      0.051     -0.417      0.676      -0.120       0.078
+Years_Smoking                             -0.0087      0.059     -0.148      0.882      -0.123       0.106
+==============================================================================
+Omnibus:                       84.060   Durbin-Watson:                   2.019
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):              264.360
+Skew:                          -0.001   Prob(JB):                     3.94e-58
+Kurtosis:                       4.781   Cond. No.                         956.
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
