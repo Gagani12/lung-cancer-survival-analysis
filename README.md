@@ -1,317 +1,194 @@
-# 🫁 Lung Cancer Survival Prediction
+# Lung Cancer Patient Data – Advanced Statistical Analysis
 
-### Identifying Factors Influencing Lung Cancer Patient Survival Using Statistical Analysis and Predictive Modeling
+Advanced Statistics final group project. We analyse a lung cancer patient dataset in Python to find out which patient and clinical factors are linked to **survival time**, check our statistical assumptions properly, and model the **monthly trend in diagnoses**.
 
-<p align="center">
-  <b>A Data Science Project | NSBM Green University</b>
-</p>
+All analysis is in one Jupyter notebook: `Stat_Group_Project_completed.ipynb` (made in Google Colab).
 
 ---
 
-## 📌 Project Overview
+## Research Questions
 
-Lung cancer is one of the leading causes of cancer-related deaths worldwide. Understanding the factors that influence patient survival is important for improving healthcare decisions and treatment planning.
-
-This project focuses on analyzing lung cancer patient data using statistical analysis and machine learning techniques to identify important factors associated with patient survival and predict survival outcomes.
-
-The analysis explores demographic, lifestyle, clinical, and treatment-related factors to discover meaningful patterns and relationships within the dataset.
-
----
-
-## 🎯 Project Objectives
-
-- Perform data cleaning and preprocessing.
-- Explore patient characteristics through Exploratory Data Analysis (EDA).
-- Identify relationships between patient factors and survival outcomes.
-- Conduct statistical hypothesis testing.
-- Test statistical assumptions before applying analytical models.
-- Apply Linear and Multiple Regression techniques.
-- Perform dimensionality reduction using PCA.
-- Explore clustering patterns in patient data.
-- Analyze temporal trends where applicable.
-- Develop machine learning classification models.
-- Handle class imbalance problems.
-- Evaluate and compare predictive models.
-- Identify important features influencing survival outcomes.
+1. Does mean survival time (`Survival_Months`) differ between **male and female** patients?
+2. Does survival time differ across **cancer stages (I–IV)**?
+3. Can patient characteristics and clinical factors explain the variation in survival months? (multiple linear regression)
+4. Are there natural **patient groups** in the data? (PCA + K-Means clustering)
+5. How are monthly diagnosis counts changing over time, and which **ARIMA / SARIMA** model forecasts them best?
 
 ---
 
-## 📂 Project Structure
+## Dataset
 
-```text
-Lung-Cancer-Project/
-│
-├── data/
-│   └── lung_cancer.csv
-│
-├── notebooks/
-│   ├── 01_Data_Cleaning.ipynb
-│   ├── 02_Exploratory_Data_Analysis.ipynb
-│   ├── 03_Hypothesis_Testing.ipynb
-│   ├── 04_Assumption_Testing.ipynb
-│   ├── 05_Regression_Analysis.ipynb
-│   ├── 06_PCA_Clustering.ipynb
-│   ├── 07_Time_Series_Analysis.ipynb
-│   ├── 08_Confidence_Intervals_Model_Validation.ipynb
-│   ├── 09_Machine_Learning_Classification.ipynb
-│   ├── 10_Class_Imbalance_Handling.ipynb
-│   ├── 11_Model_Evaluation.ipynb
-│   └── 12_Feature_Importance_Business_Interpretation.ipynb
-│
-├── results/
-│   ├── figures/
-│   └── tables/
-│
-├── README.md
-└── requirements.txt
-```
-
----
-
-## 🔬 Project Workflow
-
-The project follows a structured Data Science workflow.
-
-| Stage | Analysis |
+| Item | Detail |
 |---|---|
-| 01 | Data Cleaning |
-| 02 | Exploratory Data Analysis |
-| 03 | Hypothesis Testing |
-| 04 | Assumption Testing |
-| 05 | Regression Analysis |
-| 06 | PCA & Clustering |
-| 07 | Time Series Analysis |
-| 08 | Confidence Intervals & Model Validation |
-| 09 | Machine Learning Classification |
-| 10 | Class Imbalance Handling |
-| 11 | Model Evaluation |
-| 12 | Feature Importance & Business Interpretation |
+| File | `lung_cancer_dataset.csv` |
+| Records | 2,000 patients (`LC-0001` … `LC-2000`) |
+| Variables | 41 |
+| Diagnosis period | 2015 – 2026 (monthly series: Jan 2015 – Jul 2026) |
+| Coverage | 60 countries across 6 WHO regions |
+| Missing values | 0 |
+| Duplicate rows / IDs | 0 / 0 |
+
+**Variable groups**
+
+- **Demographics:** Age, Gender, Country, WHO_Region, BMI
+- **Smoking & exposure:** Smoking_Status, Cigarettes_Per_Day, Years_Smoking, Secondhand_Smoke, Occupational_Hazard, Air_Pollution_Exposure, Asbestos_Exposure, Radon_Exposure, Alcohol_Use
+- **History & lifestyle:** Family_History, Chronic_Lung_Disease, Previous_Cancer_History, Genetic_Mutation, Exercise_Frequency
+- **Symptoms (Yes/No):** Coughing, Shortness_of_Breath, Chest_Pain, Coughing_Blood, Fatigue, Weight_Loss, Wheezing, Recurrent_Infections, Swallowing_Difficulty, Finger_Clubbing
+- **Clinical:** Cancer_Type, NSCLC_Subtype, Cancer_Stage, Tumor_Size_cm, Metastasis, Diagnosis_Method, Treatment
+- **Outcomes:** `Survival_Months` (1–110, mean 31.76), `Survived` (Yes 756 / No 1,244)
 
 ---
 
-## 📊 Exploratory Data Analysis
+## Methods
 
-Exploratory Data Analysis is performed to understand the dataset and identify important patterns.
-
-The analysis includes:
-
-- Patient age distribution.
-- Gender distribution.
-- Cancer stage distribution.
-- Smoking history.
-- Treatment-related patterns.
-- Survival outcome distribution.
-- Correlation between numerical variables.
-
-### Data Visualizations
-
-The following visualizations are generated during the analysis.
-
-**1. Age Distribution**
-
-!["11)Age_qqplot.png"](results/figures/"C:\Users\hp\Downloads\11)Age_qqplot.png")
-
-**2. 	Regression Analysis Plot**
-
-![Regression Analysis Plot](results/figures/"C:\Users\hp\Downloads\16)regression_residual_plot.png")
-
-**3. Correlation Heatmap**
-
-![Correlation Heatmap](results/figures/"C:\Users\hp\Downloads\10)correlation_heatmap.png")
-
-**4. Confidence Interval**
-
-![Confidence Interval](results/figures/"C:\Users\hp\Downloads\29)confidence_interval_plot.png")
-
-**5. Correlation Heatmap**
-
-![Correlation Heatmap](results/figures/correlation_heatmap.png)
+| # | Section | What we did |
+|---|---|---|
+| 1 | **Data cleaning** | Checked duplicates and missing values, converted `Diagnosis_Date` to datetime, trimmed text categories, checked for invalid values (negative ages, BMI ≤ 0, etc.), saved a cleaned dataset |
+| 2 | **Exploratory data analysis** | Descriptive statistics, histograms of numeric variables, bar charts of categorical variables, correlation heatmap |
+| 3 | **Assumption checks** | Shapiro–Wilk normality tests, Q-Q plots, Levene's test for equal variances, normality of ANOVA residuals |
+| 4 | **Hypothesis testing** | Welch's independent t-test (gender), one-way ANOVA (cancer stage), plus Mann–Whitney U and Kruskal–Wallis as non-parametric checks |
+| 5 | **Regression** | Multiple linear regression (OLS) on `Survival_Months`, with residual-vs-fitted and residual Q-Q diagnostic plots |
+| 6 | **PCA** | 25 standardised features (numeric + one-hot categoricals), scree plot, 2D PC plot |
+| 7 | **Clustering** | K-Means for K = 2–7, chosen using the elbow method and silhouette score, then cluster profiles |
+| 8 | **Time series** | Monthly diagnosis counts, rolling statistics, ADF stationarity test, differencing, ACF/PACF, comparison of 9 ARIMA and 3 SARIMA candidates on a time-ordered train/test split, residual checks (Ljung–Box), 95% forecast intervals |
+| 9 | **Confidence intervals** | 95% t-intervals for mean survival: overall, by gender and by stage |
+| 10 | **Model validation** | 5-fold cross-validation (R²) for Linear Regression and Random Forest Regressor, residual analysis |
+| 11 | **Machine learning (extension)** | Survival classification pipeline with feature engineering (`Pack_Years`, `Total_Symptoms`), stratified split, Logistic Regression, Random Forest, Gradient Boosting and XGBoost, tuning with RandomizedSearchCV, ROC curves, confusion matrix, feature importance |
 
 ---
 
-## 📈 Statistical Analysis
+## Key Results
 
-Statistical techniques are applied to investigate relationships between patient characteristics and survival outcomes.
+### Assumption checks
+- Shapiro–Wilk rejected normality for Age, BMI, Tumor_Size_cm and Survival_Months (all p < 0.01).
+- Levene's test showed unequal variances by gender (p = 0.034) and by stage (p < 0.001).
+- Because of this we used **Welch's t-test** and confirmed every result with **non-parametric tests**.
 
-The statistical analysis includes:
+### Hypothesis tests (α = 0.05)
 
-- Descriptive Statistics
-- Hypothesis Testing
-- Statistical Assumption Testing
-- Confidence Interval Estimation
-- Correlation Analysis
-- Linear Regression
-- Multiple Regression
+| Test | Comparison | Statistic | p-value | Decision |
+|---|---|---|---|---|
+| Welch's t-test | Survival months by gender | t = −3.42 | 0.0006 | Reject H₀ |
+| Mann–Whitney U | Survival months by gender | U = 429,113 | 0.0013 | Reject H₀ |
+| One-way ANOVA | Survival months by stage | F = 1793.60 | < 0.001 | Reject H₀ |
+| Kruskal–Wallis | Survival months by stage | H = 1543.02 | < 0.001 | Reject H₀ |
 
-These techniques help identify statistically meaningful relationships within the dataset.
+### 95% confidence intervals for mean survival (months)
 
----
+| Group | n | Mean | 95% CI |
+|---|---|---|---|
+| All patients | 2000 | 31.76 | 30.71 – 32.80 |
+| Female | 752 | 34.14 | 32.36 – 35.92 |
+| Male | 1248 | 30.32 | 29.04 – 31.60 |
+| Stage I | 577 | 59.72 | 58.27 – 61.18 |
+| Stage II | 487 | 35.51 | 34.31 – 36.72 |
+| Stage III | 460 | 17.86 | 17.18 – 18.53 |
+| Stage IV | 476 | 7.44 | 7.03 – 7.84 |
 
-## 🧠 Dimensionality Reduction & Clustering
+Survival falls sharply as stage increases, and the stage intervals do not overlap.
 
-Principal Component Analysis (PCA) is used to reduce the dimensionality of the dataset while preserving important information.
+### Multiple linear regression
+- Model: `Survival_Months ~ Age + BMI + Tumor_Size_cm + Cigarettes_Per_Day + Years_Smoking + Gender + Smoking_Status + Cancer_Stage + Metastasis + Treatment`
+- **R² = 0.731, adjusted R² = 0.728**, F(19, 1980) = 283.2, p < 0.001
+- **Cancer stage is the only significant predictor.** Compared with Stage I, survival is lower by about 24.8 months (Stage II), 42.1 months (Stage III) and 51.5 months (Stage IV), all p < 0.001.
+- Once stage is in the model, gender, age, BMI, tumour size, smoking, metastasis and treatment are **not** significant (p > 0.05). So the gender difference in the t-test is most likely explained by differences in stage.
 
-Clustering techniques are explored to identify groups of patients with similar characteristics.
+### PCA and clustering
+- PC1 explains 19.69% and PC2 12.52% of variance (32.2% together), so the variance is spread across many dimensions.
+- The best silhouette score was at **K = 2** (0.190):
+  - **Cluster 0 (549 patients):** larger tumours (mean 6.9 cm), mostly Stage IV, median survival 8 months
+  - **Cluster 1 (1,451 patients):** smaller tumours (mean 3.6 cm), mostly Stage I, median survival 38 months
 
----
+### Time series (monthly diagnosis counts)
+- 139 monthly observations. The ADF test showed the original series is non-stationary (p = 0.87). After first differencing it is stationary (p < 0.001), so **d = 1**.
+- Train: Jan 2015 – Mar 2024 (111 months). Test: Apr 2024 – Jul 2026 (28 months).
+- **Selected model: SARIMA(1,1,1)(0,1,1)₁₂**, which had the lowest test RMSE (6.08) and MAE (5.09) and the lowest AIC (475.65) of all 12 candidates. The best non-seasonal model was ARIMA(0,1,1), with RMSE 7.32.
+- The model was refit on the full series to forecast future months with 95% intervals. The Ljung–Box p-value (0.0035) suggests some residual autocorrelation is left, so the forecast should be read as a planning estimate.
 
-## 🤖 Machine Learning
+### Model validation (Survival_Months, numeric predictors only)
 
-Machine learning classification techniques are applied to predict patient survival outcomes.
+| Model | Mean 5-fold CV R² | CV SD |
+|---|---|---|
+| Linear Regression | 0.474 | 0.026 |
+| Random Forest Regressor | 0.484 | 0.043 |
 
-The machine learning workflow includes:
-
-- Data Preprocessing
-- Feature Selection
-- Model Training
-- Class Imbalance Handling
-- Model Validation
-- Performance Evaluation
-
-### Model Evaluation
-
-Models are evaluated using appropriate performance metrics:
-
-- Accuracy
-- Precision
-- Recall
-- F1-Score
-- Confusion Matrix
-- ROC Curve
-- AUC Score
-
-### Model Performance Visualizations
-
-**1. Confusion Matrix**
-
-![Confusion Matrix](results/figures/confusion_matrix.png)
-
-**2. ROC Curve**
-
-![ROC Curve](results/figures/roc_curve.png)
-
-**3. Model Comparison**
-
-![Model Comparison](results/figures/model_comparison.png)
-
-**4. Feature Importance**
-
-![Feature Importance](results/figures/feature_importance.png)
+> Note: the "Test" MAE/RMSE/R² values in `model_validation_summary.csv` are calculated on the same data the models were trained on (in-sample). The cross-validated R² above is the fair measure of performance on new data.
 
 ---
 
-## 📁 Results & Outputs
+## Repository Structure
 
-All generated outputs are organized inside the `results/` directory.
-
-| Folder | Description |
-|---|---|
-| `results/figures/` | Graphs, charts, and visualizations |
-| `results/tables/` | Statistical results and model performance tables |
-
----
-
-## 🛠️ Technologies & Tools
-
-The following technologies and libraries are used throughout the project.
-
-| Technology | Purpose |
-|---|---|
-| Python | Programming and data analysis |
-| Jupyter Notebook | Interactive analysis |
-| Pandas | Data manipulation |
-| NumPy | Numerical computations |
-| Matplotlib | Data visualization |
-| Seaborn | Statistical visualization |
-| Scikit-learn | Machine learning |
-| SciPy | Statistical analysis |
-| Statsmodels | Statistical modeling |
-
----
-
-## 🚀 Installation & Setup
-
-Follow these steps to run the project locally.
-
-### 1. Clone the Repository
-
-```bash
-git clone <repository-url>
+```
+├── Stat_Group_Project_completed.ipynb   # Full analysis notebook
+├── lung_cancer_dataset.csv              # Raw dataset
+├── outputs/                             # Generated when the notebook runs
+│   ├── lung_cancer_cleaned.csv
+│   ├── clustered_lung_cancer_data.csv
+│   ├── regression_summary.txt
+│   ├── regression_coefficients.csv
+│   ├── cluster_evaluation.csv
+│   ├── model_validation_summary.csv
+│   ├── *_histogram.png, *_countplot.png, correlation_heatmap.png
+│   ├── *_qqplot.png, anova_residuals_qqplot.png, regression_residual_plot.png
+│   ├── pca_scree_plot.png, pca_2d_visualization.png
+│   ├── elbow_method.png, silhouette_analysis.png, kmeans_cluster_visualization.png
+│   ├── monthly_time_series.png, rolling_statistics.png, stationary_series.png
+│   ├── acf_pacf_stationary_series.png, time_series_residual_diagnostics.png
+│   ├── time_series_residual_acf.png, time_series_forecast.png
+│   ├── confidence_interval_plot.png
+│   └── ml_roc_curves.png, optimized_confusion_matrix.png, top_15_feature_importance.png
+└── README.md
 ```
 
-### 2. Navigate to the Project Directory
+---
 
+## How to Run
+
+# Run locally
 ```bash
-cd Lung-Cancer-Project
+git clone https://github.com/<your-username>/<repo-name>.git
+cd <repo-name>
+pip install pandas numpy matplotlib seaborn scipy statsmodels scikit-learn xgboost jupyter
+jupyter notebook Stat_Group_Project_completed.ipynb
+```
+Change the dataset path in the first code cell to:
+```python
+df = pd.read_csv("lung_cancer_dataset.csv")
 ```
 
-### 3. Install Required Libraries
+---
 
-```bash
-pip install -r requirements.txt
-```
+## Tech Stack
 
-### 4. Launch Jupyter Notebook
-
-```bash
-jupyter notebook
-```
-
-### 5. Run the Notebooks
-
-Open the `notebooks/` folder and execute the notebooks in the recommended sequence.
+- **Python 3** (Jupyter / Google Colab)
+- **pandas, NumPy:** data handling
+- **Matplotlib, Seaborn:** visualisation
+- **SciPy:** Shapiro–Wilk, Levene, t-test, ANOVA, Mann–Whitney, Kruskal–Wallis, confidence intervals
+- **statsmodels:** OLS regression, ADF test, ACF/PACF, ARIMA/SARIMAX, Ljung–Box
+- **scikit-learn:** PCA, K-Means, silhouette score, cross-validation, ML pipelines
+- **XGBoost:** gradient-boosted classifier
 
 ---
 
-## 📊 Expected Outcomes
+## Limitations
 
-- Identify important factors associated with lung cancer patient survival.
-- Understand relationships between demographic and clinical variables.
-- Discover meaningful patterns through statistical analysis.
-- Develop predictive classification models.
-- Compare model performance using appropriate metrics.
-- Identify influential features.
-- Generate data-driven insights to support healthcare-related research.
+- Several variables are not normally distributed and group variances differ, which is why we added non-parametric tests alongside the parametric ones.
+- Linear regression residuals are not perfectly normal, so p-values should be read with some caution.
+- The first two principal components explain only about 32% of the variance, and silhouette scores are low (about 0.19), so the clusters overlap.
+- The SARIMA residuals still show some autocorrelation (Ljung–Box p < 0.05).
+- The results show association, not causation.
 
 ---
 
-## 👥 Project Team
+## Team
 
-This project is collaboratively developed by undergraduate Data Science students at NSBM Green University.
-
-| Team Member | Responsibilities |
-|---|---|
-| Team Member 1 | Data Cleaning, EDA, Hypothesis Testing & Assumption Testing |
-| Team Member 2 | Regression Analysis, PCA & Clustering, Time Series Analysis, Confidence Intervals & Model Validation |
-| Team Member 3 | Machine Learning Classification, Class Imbalance Handling, Model Evaluation & Feature Importance |
-
----
-
-## 🎓 Academic Information
-
-**University:** NSBM Green University  
-**Degree:** BSc (Hons) in Data Science  
-**Department:** Department of Computer and Data Science  
-**Project:** Lung Cancer Survival Prediction
+| Name | Student ID | Contribution |
+|---|---|---|
+| Gagani Rathnayaka | 36508 | |
+| | | |
+| | | |
+| | | |
 
 ---
 
-## ⚠️ Disclaimer
-
-This project is developed for academic and educational purposes only.
-
-The predictive models and statistical findings are not intended to replace professional medical advice, clinical diagnosis, or treatment decisions.
-
----
-
-## ⭐ Conclusion
-
-This project demonstrates the application of statistical analysis and machine learning techniques to investigate factors associated with lung cancer patient survival.
-
-By combining data preprocessing, exploratory analysis, statistical methods, predictive modeling, and model interpretation, the project aims to discover meaningful insights from healthcare data.
-
----
-
-<p align="center">
-  <b>Exploring Healthcare Data Through the Power of Data Science 🫁📊</b>
-</p>
+*This project was completed for academic purposes as part of the Advanced Statistics module.*
